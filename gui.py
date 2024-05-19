@@ -35,19 +35,17 @@ def predict_output():
     # Get the input values from the entry fields
     is_fraud_value = float(is_fraud_entry.get())
     category_value = int(category_entry.get())
-    hour_of_day_value = int(hour_entry.get())
-    day_of_week_value = int(day_entry.get())
+    hour_of_day_value = int(hour_entry.get())   
     month_value = int(month_entry.get())
     z_score_value = float(z_score_entry.get())
     time_between_transactions_value = float(time_entry.get())
     amount_value = float(amount_entry.get())
 
     # Create a single data point
-    single_data_point = [[category_value, hour_of_day_value, day_of_week_value, month_value, z_score_value, time_between_transactions_value, amount_value]]
+    single_data_point = [[category_value, hour_of_day_value, month_value, z_score_value, time_between_transactions_value, amount_value]]
     new_row_data = {
     'is_fraud': is_fraud_value, 
     'Hour of Day': hour_of_day_value,
-    'Day of Week': day_of_week_value,
     'Month': month_value,
     'Category': category_value,
     'Z Score': z_score_value,
@@ -71,9 +69,6 @@ def predict_output():
         
     #[TP, FP, TN, FN]
     accuracy = (metrics[0] + metrics[2]) / (metrics[0] + metrics[1] + metrics[2] + metrics[3])
-    
-    if accuracy <= 0.9:
-        retrain()
 
     messagebox.showinfo("Prediction", f"The predicted output is: {output}")
     if accuracy <= 0.9:
@@ -97,10 +92,10 @@ hour_label.pack()
 hour_entry = tk.Entry(window)
 hour_entry.pack()
 
-day_label = tk.Label(window, text="Day of Week:")
-day_label.pack()
-day_entry = tk.Entry(window)
-day_entry.pack()
+#day_label = tk.Label(window, text="Day of Week:")
+#day_label.pack()
+#day_entry = tk.Entry(window)
+#day_entry.pack()
 
 month_label = tk.Label(window, text="Month:")
 month_label.pack()
